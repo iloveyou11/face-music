@@ -1,0 +1,7 @@
+.list-container{
+
+}
+.swiper{
+  width: 100%;
+  height: 100%;
+}
