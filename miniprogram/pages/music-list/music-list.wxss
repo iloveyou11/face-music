@@ -1,0 +1,80 @@
+.detail-container {
+  height: 320rpx;
+  filter: blur(40rpx);
+  opacity: 0.4;
+}
+
+.detail-mask{
+  position: absolute;
+  width: 100%;
+  height: 320rpx;
+  background-color: #333;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.detail-info {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 320rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.detail-img {
+  width: 280rpx;
+  height: 280rpx;
+  margin-right: 24rpx;
+  border-radius: 12rpx;
+  box-shadow: 2px 2px 5px #888888;
+}
+.detail {
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  color:#ccc;
+  padding: 40rpx 20rpx;
+}
+
+.detail .detail-name {
+  font-size: 30rpx;
+  font-weight: 400;
+  margin-bottom: 14rpx;
+  color:#fff;
+}
+
+.detail .detail-description {
+  font-size: 24rpx;
+  margin-bottom: 24rpx;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detail .detail-count {
+  font-size: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.detail .detail-tags {
+  font-size: 24rpx;
+}
+.detail .subscribe-btn {
+  position: 'absolute';
+  bottom: 4rpx;
+  right: 4rpx;
+  width:100rpx;
+  height: 50rpx;
+  background-color: red;
+  color:#fff;
+  font-size: 24rpx;
+}

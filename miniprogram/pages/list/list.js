@@ -1,4 +1,4 @@
-// miniprogram/pages/list/list.js
+const MAX_LENGTH=15
 Page({
 
   /**
@@ -13,14 +13,15 @@ Page({
       },
       {
         url: 'http://p1.music.126.net/Yo-FjrJTQ9clkDkuUCTtUg==/109951164169441928.jpg',
-      }]
+      }],
+      playlist:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this._getPlaylist()
   },
 
   /**
@@ -55,14 +56,17 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.setData({
+      playlist:[]
+    })
+    this._getPlaylist()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this._getPlaylist()
   },
 
   /**
@@ -70,5 +74,33 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  _getPlaylist(){
+    wx.showLoading({
+      title: '正在加载……',
+    })
+    wx.cloud.callFunction({
+      name: 'music',
+      data: {
+        start: this.data.playlist.length,
+        count: MAX_LENGTH,
+        $url:'playlist'
+      }
+    }).then(res => {
+      if (res.result.data.length===0){
+        wx.hideLoading()
+        wx.showToast({
+          title: '已经到底啦',
+        })
+        return
+      }
+      this.setData({
+        playlist: this.data.playlist.concat(res.result.data)
+      })
+      // 当数据请求回来时，停止下拉刷新的操作
+      wx.stopPullDownRefresh()
+      wx.hideLoading()
+    })
   }
 })

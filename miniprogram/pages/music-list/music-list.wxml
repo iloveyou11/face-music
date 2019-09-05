@@ -1,0 +1,18 @@
+<view class="detail-container" style='background: url({{listInfo.coverImgUrl}}) no-repeat  top/cover'>
+<!-- <button class="subscribe-btn">{{listInfo.subscribed?'已订阅':'订阅'}}</button> -->
+</view>
+<view class="detail-mask"></view>
+<view class="detail-info">
+  <image src="{{listInfo.coverImgUrl}}" class="detail-img"></image>
+  <view class="detail">
+    <view class="detail-name">{{listInfo.name}}</view>
+    <view class="detail-description">{{listInfo.description}}</view>
+    <view class="detail-count" wx:if="{{listInfo.commentCount}}">
+      <view>评论数 {{listInfo.commentCount}}  订阅数 {{listInfo.commentCount}}</view>
+      <view>已播放 {{listInfo.subscribedCount}}次  已分享 {{listInfo.shareCount}}次</view>
+    </view>
+    <view class="detail-tags" wx:if="{{listInfo.tags}}">标签 {{listInfo.tags}}</view>
+  </view>
+</view>
+
+<music-list musiclist="{{musiclist}}"/>

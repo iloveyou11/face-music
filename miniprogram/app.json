@@ -2,7 +2,11 @@
   "pages": [
     "pages/list/list",
     "pages/profile/profile",
-    "pages/review/review"
+    "pages/review/review",
+    "components/disc/disc",
+    "pages/music-list/music-list",
+    "components/music-list/music-list",
+    "pages/player/player"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -12,24 +16,28 @@
     "navigationBarTextStyle": "white"
   },
   "sitemapLocation": "sitemap.json",
-  "tabBar":{
-    "color":"#aaa",
-    "selectedColor":"#333",
-    "list":[{
-      "pagePath":"pages/list/list",
-      "text":"音乐",
-      "iconPath":"images/music-init.png",
-      "selectedIconPath":"images/music-select.png"
-    },{
-      "pagePath": "pages/review/review",
-      "text": "发现",
-      "iconPath": "images/review-init.png",
-      "selectedIconPath": "images/review-select.png"
-    },{
-      "pagePath": "pages/profile/profile",
-      "text": "我的",
-      "iconPath": "images/profile-init.png",
-      "selectedIconPath": "images/profile-select.png"
-    }]
+  "tabBar": {
+    "color": "#aaa",
+    "selectedColor": "#333",
+    "list": [
+      {
+        "pagePath": "pages/list/list",
+        "text": "音乐",
+        "iconPath": "images/music-init.png",
+        "selectedIconPath": "images/music-select.png"
+      },
+      {
+        "pagePath": "pages/review/review",
+        "text": "发现",
+        "iconPath": "images/review-init.png",
+        "selectedIconPath": "images/review-select.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/profile-init.png",
+        "selectedIconPath": "images/profile-select.png"
+      }
+    ]
   }
 }

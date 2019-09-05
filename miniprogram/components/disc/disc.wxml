@@ -1,0 +1,5 @@
+<view class="disc-container" bindtap="goToMusicList">
+  <image class="disc-img" src="{{playlist.picUrl}}"></image>
+  <text class="disc-count">{{_count}}</text>
+  <view class="disc-name">{{playlist.name}}</view>
+</view>
