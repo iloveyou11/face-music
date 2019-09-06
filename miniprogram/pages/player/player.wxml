@@ -1,2 +1,30 @@
-<!--miniprogram/pages/player/player.wxml-->
-<text>miniprogram/pages/player/player.wxml</text>
+<view class="player-container" style="background:url({{picUrl}}) center/cover no-repeat"></view>
+<view class="player-mask"></view>
+
+<view class="play-info">
+<!-- 唱片页面 -->
+<!-- isLyricsShow为true时启动hidden隐藏 -->
+  <!-- <view class="player-disc {{isPlaying?'play':''}}" bindtap="changeView" hidden="{{isLyricsShow}}"> -->
+    <view class="player-disc {{isPlaying?'play':''}}" bindtap="changeView" hidden="true">
+  <!-- 不采用以下这种写法，是因为每次暂停时，图片都恢复到原有状态，不能保持当前已旋转的角度静止 -->
+    <!-- <image class="play-img {{isPlaying?'rotation':''}}" src="{{picUrl}}"></image> -->
+        <image class="play-img rotation {{isPlaying?'':'rotation-pause'}}" src="{{picUrl}}"></image>
+  </view>
+
+<!-- 歌词页面 -->
+  <!-- <lyrics isLyricsShow="{{isLyricsShow}}" bindtap="changeView" /> -->
+  <lyrics class="lyrics" isLyricsShow="{{!isLyricsShow}}" bindtap="changeView" lyric="{{lyric}}"/>
+
+  <view class="progress-bar">
+    <progress-bar bind:musicEnd="onNext" bind:timeUpdate="timeUpdate"/>
+  </view>
+
+  <view class="control">
+    <text class="iconfont icon-xunhuanbofang"></text>
+    <text class="iconfont icon-shangyiqu101" bindtap="onPrev"></text>
+    <text class="iconfont {{isPlaying?'icon-zanting':'icon-play_icon'}}" bindtap="toggleMusic"></text>
+    <text class="iconfont icon-xiayiqu101" bindtap="onNext"></text>
+    <text class="iconfont icon-liebiaosousuozhuangtai"></text>
+  </view>
+
+</view>
