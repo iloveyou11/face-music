@@ -2,7 +2,7 @@
 let musiclist=[]
 let nowPlayingIndex=0 //正在播放歌曲的index
 const musicManager=wx.getBackgroundAudioManager()
-
+const app=getApp()
 
 Page({
 
@@ -13,7 +13,8 @@ Page({
     picUrl:'',
     isPlaying: false, //false不播放。true播放
     isLyricsShow:false,
-    lyric:''
+    lyric:'',
+    isSameMusic:false //是否为同一首歌
   },
 
   /**
@@ -32,8 +33,20 @@ Page({
   },
 
   _loadMusicDetail(musicId){
+    // 判断是否为同一首歌曲
+    if (musicId === app.getPlayingMusicId()){
+      this.setData({
+        isSameMusic:true
+      })
+    }else{
+      this.setData({
+        isSameMusic: false
+      })
+    }
     // 先停止音乐，再加载，可以提升用户体验
-    musicManager.stop()
+    if(!this.data.isSameMusic){
+      musicManager.stop()
+    }
 
     let music = musiclist[nowPlayingIndex]
     console.log(music)
@@ -43,6 +56,8 @@ Page({
     this.setData({
       picUrl: music.al.picUrl
     })
+    // 设置全局属性
+    app.setPlayingMusicId(musicId)
 
     wx.showLoading({
       title: '歌曲正在加载……',
@@ -55,13 +70,23 @@ Page({
         musicId: musicId
       }
     }).then(res=>{
-      // console.log(JSON.parse(res.result))
       let result=JSON.parse(res.result)
-      musicManager.src = result.data[0].url
-      musicManager.title = music.name
-      musicManager.coverImgUrl = music.al.picUrl
-      musicManager.singer = music.ar[0].name
-      musicManager.epname = music.al.name //专辑名称
+
+      // 判断是否能获取歌曲的url值，因为有些歌单是VIP歌单，用户未登录，无权限
+      if(result.data[0].url==null){
+        wx.showToast({
+          title: '无权限博凡',
+        })
+        return
+      }
+
+      if (!this.data.isSameMusic) {
+        musicManager.src = result.data[0].url
+        musicManager.title = music.name
+        musicManager.coverImgUrl = music.al.picUrl
+        musicManager.singer = music.ar[0].name
+        musicManager.epname = music.al.name //专辑名称
+      }
 
       this.setData({
         isPlaying:true
@@ -91,6 +116,18 @@ Page({
 
   timeUpdate(e){
     this.selectComponent('.lyrics').update(e.detail.curTime)
+  },
+
+  musicPlay(){
+    this.setData({
+      isPlaying:true
+    })
+  },
+
+  musicPause(){
+    this.setData({
+      isPlaying: false
+    })
   },
 
   toggleMusic(){

@@ -31,12 +31,27 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
 					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide"
+					"pathName": "pages/databaseGuide/databaseGuide",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "pages/review/review",
+					"pathName": "pages/review/review",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/review-edit/review-edit",
+					"pathName": "pages/review-edit/review-edit",
+					"query": "nickName=\"阿巴狸\"&avatarUrl=\"https://wx.qlogo.cn/mmopen/vi_32/ibtq0OBBH8Oib4YdB…jDa9BiaklAZ3nicX0mSrydBLeUiaLgx921fAnNjzfnZwA/132\"",
+					"scene": null
 				}
 			]
 		}

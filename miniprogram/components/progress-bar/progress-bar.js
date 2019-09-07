@@ -13,7 +13,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    isSameMusic:Boolean
   },
 
   /**
@@ -30,6 +30,9 @@ Component({
 
   lifetimes:{
     ready(){
+      if (this.properties.isSameMusic && this.data.musicTime.totalTime==='00:00'){
+        this._setTime()
+      }
       this._getMovableWidth()
       this._bindMusicEvent()
     }
@@ -78,10 +81,12 @@ Component({
     _bindMusicEvent(){
       musicManager.onPlay(()=>{
         isMoving=false;
+        this.triggerEvent('musicPlay')
       })
       musicManager.onStop(() => {
       })
       musicManager.onPause(() => {
+        this.triggerEvent('musicPause')
       })
       musicManager.onWaiting(() => {
       })

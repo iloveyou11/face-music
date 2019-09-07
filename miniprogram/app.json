@@ -6,9 +6,12 @@
     "components/disc/disc",
     "pages/music-list/music-list",
     "components/music-list/music-list",
-    "pages/player/player"
+    "pages/player/player",
+    "components/search/search",
+    "pages/review-edit/review-edit",
+    "pages/comment/comment"
   ],
-  "requiredBackgroundModes":[
+  "requiredBackgroundModes": [
     "audio"
   ],
   "window": {

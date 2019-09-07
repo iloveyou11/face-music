@@ -6,6 +6,30 @@
   </block>
 </swiper>
 
+<!-- 导航区 -->
+<view class="nav-container">
+  <view class="item">
+    <view><text class="iconfont icon-tuijian"></text></view>
+    <text>每日推荐</text>
+  </view>
+    <view class="item">
+    <view><text class="iconfont icon-huabankaobei-"></text></view>
+    <text>歌单</text>
+  </view>
+    <view class="item">
+    <view><text class="iconfont icon-paixingbang"></text></view>
+    <text>排行榜</text>
+  </view>
+    <view class="item">
+    <view><text class="iconfont icon-huaban"></text></view>
+    <text>电台</text>
+  </view>
+    <view class="item">
+    <view><text class="iconfont icon-airudiantubiaohuizhi-zhuanqu_zhibojian"></text></view>
+    <text>直播</text>
+  </view>
+</view>
+
 <view class="list-container">
   <block wx:for="{{playlist}}" wx:key="_id">
     <my-disc playlist="{{item}}"></my-disc>

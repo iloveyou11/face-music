@@ -1,0 +1,34 @@
+.container{
+  display: flex;
+  align-items: center;
+  margin-left: 20rpx;
+  position: relative;
+}
+
+.bar{
+  flex: 1;
+  height: 68rpx;  
+  font-size: 28rpx;
+  border-radius: 50rpx;
+  background-color: #f5f5f5;
+  padding-left: 60rpx;
+}
+
+.search{
+  background: #B03060;
+  color:#fff;
+  margin-left: 20rpx;
+  font-size: 24rpx;
+}
+
+.placeholder-class{
+  color:#999;
+}
+
+/* 传递进来的样式组件内部不能修改 */
+.my-icon-sousuo{
+  position: absolute;
+  top:50%;
+  transform: translate(16rpx,-50%);
+  color:#9f9f9f;
+}

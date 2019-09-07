@@ -1,3 +1,4 @@
+const app=getApp()
 Component({
   /**
    * 组件的属性列表
@@ -11,6 +12,15 @@ Component({
    */
   data: {
     playingId:-1
+  },
+
+  // 组件页面的生命周期，如果显示，则去获取全局的musicId属性，并设置其高亮
+  pageLifetimes:{
+    show(){
+      this.setData({
+        playingId: parseInt(app.getPlayingMusicId())
+      })
+    }
   },
 
   /**

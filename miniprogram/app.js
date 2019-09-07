@@ -16,6 +16,15 @@ App({
       })
     }
     // 小程序全局属性和方法
-    this.globalData = {}
-  }
+    this.globalData = {
+      playingMusicId:-1
+    }
+  },
+
+  setPlayingMusicId(id){
+    this.globalData.playingMusicId=id
+  },
+  getPlayingMusicId(){
+    return this.globalData.playingMusicId
+  },
 })

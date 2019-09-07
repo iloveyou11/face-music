@@ -1,0 +1,5 @@
+<view class="container">
+  <i class="iconfont icon-sousuo my-icon-sousuo"></i>
+  <input bindinput="onInput" class="bar placeholder-class" placeholder="{{placeholder}}"></input>
+  <button class="search" bindtap="onSearch">搜素</button>
+</view>

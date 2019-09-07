@@ -1,66 +1,112 @@
-// miniprogram/pages/review/review.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    // 控制底部弹出层是否显示
+    modalShow:false,
+    blogList:[]
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  // 加载博客列表数据
   onLoad: function (options) {
-
+    this._loadBlogList()
+  },
+  _loadBlogList(start=0){
+    wx.showLoading({
+      title: '拼命加载中……',
+    })
+    wx.cloud.callFunction({
+      name:'blog',
+      data:{
+        start,
+        count: 10,
+        $url:'list'
+      }
+    }).then(res=>{
+        if(res.result.length===0){
+          wx.showToast({
+            title: '没有更多数据了',
+          })
+          wx.hideLoading()
+          wx.stopPullDownRefresh()
+          return
+        }
+        this.setData({
+          blogList:this.data.blogList.concat(res.result)
+        })
+        wx.hideLoading()
+        wx.stopPullDownRefresh()
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  options:{
+    styleIsolation:'apply-shared'
+  },
+  
+  // 发布
+  publish(){
+    // 先判断用户是否授权
+    wx.getSetting({
+      success:(res)=>{
+        // console.log(res)
+        // console.log(res.authSetting['scope.userInfo'])
+        if (res.authSetting['scope.userInfo']){
+          wx.getUserInfo({
+            success:(res)=>{
+              // console.log(res)
+              // 如果用户已授权，则直接跳转到博客书写页面
+              this.loginSuccess({
+                detail:res.userInfo
+              })
+            }
+          })
+        }else{
+          this.setData({
+            modalShow:true
+          })
+        }
+      }
+    })
+    
+    this.setData({
+      modalShow:true
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+  loginSuccess(e){
+    console.log(e)
+    const detail=e.detail
+    wx.navigateTo({
+      url: `../review-edit/review-edit?nickName=${detail.nickName}&avatarUrl=${detail.avatarUrl}`,
+    })
 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  loginFail(){
+    wx.showModal({
+      title: '授权用户才能发布博客',
+      content: '',
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  onReachBottom(){
+    this._loadBlogList(this.data.blogList.length)
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  onPullDownRefresh(){
+    // 清空列表再拉取数据
+    this.setData({
+      blogList:[]
+    })
+    this._loadBlogList(0)
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  goToComment(e){
+    // 点击后将blogid传递过去
+    wx.navigateTo({
+      url: `../comment/comment?blogid=${e.target.dataset.blogid}`,
+    })
   }
+
 })

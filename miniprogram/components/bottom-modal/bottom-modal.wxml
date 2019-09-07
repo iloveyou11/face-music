@@ -1,0 +1,8 @@
+<view class="modal" hidden="{{!modalShow}}">
+  <view class="panel">
+    <i class="iconfont icon-Rectangle" bind:tap="onClose"></i>
+    <!-- 插槽 -->
+    <slot name="modal-content"></slot>
+    <slot name="slot2"></slot>
+  </view>
+</view>

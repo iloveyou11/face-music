@@ -1,0 +1,16 @@
+<view class="blog">
+  <view class="blog-title">
+    <image class="blog-portrait" src="{{blog.avatarUrl}}"></image>
+    <view class="blog-box">
+      <view class="blog-nickName">{{blog.nickName}}</view>
+      <view class="blog-time">{{_createTime}}</view>
+    </view>
+  </view>
+  <view class="blog-content">{{blog.content}}</view>
+  <view class="blog-img">
+    <block wx:for="{{blog.img}}" wx:key="{{index}}">
+    <!-- bind存在事件冒泡，而catch不存在事件冒泡，如果需要点击博客图片时不跳转至评论详情页，则可以使用catch阻止冒泡 -->
+      <image class="img" src="{{item}}" mode="aspectFill" catchtap="onPreview" data-src="{{item}}" data-imgs="{{blog.img}}"></image>
+    </block>
+  </view>
+</view>
