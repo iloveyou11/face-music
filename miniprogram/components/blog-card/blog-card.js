@@ -1,5 +1,4 @@
 import formatDate from '../../utils/time.js'
-// const formatDate = require('../../utils/time.js')
 
 Component({
   /**

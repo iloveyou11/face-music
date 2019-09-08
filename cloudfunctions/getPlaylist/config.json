@@ -1,0 +1,9 @@
+{
+  "triggers":[
+    {
+      "name":"updatePlaylist",
+      "type":"timer",
+      "config":"0 0 10,15,20 * * * *"
+    }
+  ]
+}

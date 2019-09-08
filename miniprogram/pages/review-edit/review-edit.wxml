@@ -1,5 +1,5 @@
-<view class="container">
-  <textarea class="content" placeholder="分享新鲜事..."
+<view class="edit-container">
+  <textarea class="content"
     bindinput="onInput" maxlength="140" auto-focus
     bindfocus="onFocus" bindblur="onBlur"
   ></textarea>

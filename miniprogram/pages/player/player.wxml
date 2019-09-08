@@ -4,16 +4,13 @@
 <view class="play-info">
 <!-- 唱片页面 -->
 <!-- isLyricsShow为true时启动hidden隐藏 -->
-  <!-- <view class="player-disc {{isPlaying?'play':''}}" bindtap="changeView" hidden="{{isLyricsShow}}"> -->
-    <view class="player-disc {{isPlaying?'play':''}}" bindtap="changeView" hidden="true">
+  <view class="player-disc {{isPlaying?'play':''}}" bindtap="changeView" hidden="{{isLyricsShow}}">
   <!-- 不采用以下这种写法，是因为每次暂停时，图片都恢复到原有状态，不能保持当前已旋转的角度静止 -->
-    <!-- <image class="play-img {{isPlaying?'rotation':''}}" src="{{picUrl}}"></image> -->
         <image class="play-img rotation {{isPlaying?'':'rotation-pause'}}" src="{{picUrl}}"></image>
   </view>
 
 <!-- 歌词页面 -->
-  <!-- <lyrics isLyricsShow="{{isLyricsShow}}" bindtap="changeView" /> -->
-  <lyrics class="lyrics" isLyricsShow="{{!isLyricsShow}}" bindtap="changeView" lyric="{{lyric}}"/>
+  <lyrics class="lyrics" isLyricsShow="{{isLyricsShow}}" bindtap="changeView" lyric="{{lyric}}"/>
 
   <view class="progress-bar">
     <progress-bar 

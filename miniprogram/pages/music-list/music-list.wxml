@@ -1,5 +1,4 @@
 <view class="detail-container" style='background: url({{listInfo.coverImgUrl}}) no-repeat  top/cover'>
-<!-- <button class="subscribe-btn">{{listInfo.subscribed?'已订阅':'订阅'}}</button> -->
 </view>
 <view class="detail-mask"></view>
 <view class="detail-info">

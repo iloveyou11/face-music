@@ -74,14 +74,9 @@ Page({
         }
       }
     })
-    
-    this.setData({
-      modalShow:true
-    })
   },
 
   loginSuccess(e){
-    // console.log(e)
     const detail=e.detail
     wx.navigateTo({
       url: `../review-edit/review-edit?nickName=${detail.nickName}&avatarUrl=${detail.avatarUrl}`,

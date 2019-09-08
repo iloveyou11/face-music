@@ -4,13 +4,6 @@
   align-items: center; 
 }
 
-/* .musiclist-container::after{
-  height: 2px;
-  width: 80%;
-  margin: 0 auto;
-  background-color: '#aaa'
-} */
-
 .musiclist-index {
   color: #888;
   font-size: 30rpx;
