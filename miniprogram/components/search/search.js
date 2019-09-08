@@ -32,7 +32,10 @@ Component({
       keywords=e.detail.value
     },
     onSearch(){
-      console.log(keywords)
+      // console.log(keywords)
+      this.triggerEvent('search',{
+        keywords
+      })
     }
   }
 })

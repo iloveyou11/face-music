@@ -5,7 +5,7 @@
       <i class="iconfont icon-fabu"></i>
     </view>
     <view class="search-container">
-      <search iconfont="iconfont" icon-sousuo="icon-sousuo"/>
+      <search iconfont="iconfont" icon-sousuo="icon-sousuo" bind:search="onSearch" />
     </view>
   </view>
 
@@ -13,7 +13,14 @@
   <view class="blog-list">
     <block wx:for="{{blogList}}" wx:key="{{_id}}">
      <view class="blog-panel">
-      <blog-card blog="{{item}}" data-blogid="{{item._id}}" bindtap="goToComment"/>
+      <blog-card blog="{{item}}" data-blogId="{{item._id}}" bindtap="goToComment"/>
+      <blog-ctrl
+        blog="{{item}}"
+        blogId="{{item._id}}" 
+        iconfont="iconfont"
+        icon-pinglun="icon-pinglun"
+        icon-fenxiang="icon-fenxiang"
+      />
      </view>
     </block>
   </view>

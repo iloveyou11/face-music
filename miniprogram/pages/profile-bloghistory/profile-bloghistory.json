@@ -3,5 +3,5 @@
     "blog-card":"/components/blog-card/blog-card",
     "blog-ctrl":"/components/blog-ctrl/blog-ctrl"
   },
-  "navigationBarTitleText": "博客正文"
+  "navigationBarTitleText": "我的博客"
 }

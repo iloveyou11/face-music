@@ -1,0 +1,29 @@
+<view class="ctrl">
+  <view class="ctrl-item" bindtap="onComment">
+    <i class="iconfont icon-pinglun icon"></i>
+    <text>评论</text>
+  </view>
+  <view class="ctrl-item share">
+    <!-- 小程序规定只有button标签才能实现分享功能 -->
+    <button open-type="share" data-blogId="{{blogId}}" data-blog="{{blog}}" class="share-btn" hover-class="share-hover">
+      <i class="iconfont icon-fenxiang icon"></i>
+      <text>分享</text>
+    </button>
+  </view>
+</view>
+
+<login 
+  modalShow="{{loginShow}}"
+  bind:loginSuccess="loginSuccess"
+  bind:loginFail="loginFail"
+/>
+
+<bottom-modal 
+  modalShow="{{bottomModalShow}}"
+>
+  <!-- form才能实现模板消息推送，并且要设置属性report-submit -->
+  <form slot="modal-content" report-submit="true" bindsubmit="onSend">
+    <textarea name="content" class="comment-content" placeholder="快发表评论哦" fixed="true" value="{{content}}"></textarea>
+    <button class="send" form-type="submit">发送</button>
+  </form>
+</bottom-modal>

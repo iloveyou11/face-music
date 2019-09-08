@@ -1,7 +1,6 @@
 //app.js
 App({
   onLaunch: function () {
-    
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -15,16 +14,34 @@ App({
         traceUser: true,
       })
     }
+
+    this.getOpenId()
+    
     // 小程序全局属性和方法
     this.globalData = {
-      playingMusicId:-1
+      playingMusicId:-1,
+      openid:-1
     }
   },
 
   setPlayingMusicId(id){
     this.globalData.playingMusicId=id
   },
+
   getPlayingMusicId(){
     return this.globalData.playingMusicId
   },
+
+  getOpenId(){
+    wx.cloud.callFunction({
+      name:'login'
+    }).then(res=>{
+      const openid = res.result.openid
+      this.globalData.openid = openid
+      // 判断当前openid在本地存储中是否已经存在
+      if (wx.getStorageSync(openid)==''){
+        wx.setStorageSync(openid, [])
+      }
+    })
+  }
 })

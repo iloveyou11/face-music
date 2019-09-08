@@ -1,4 +1,3 @@
-// miniprogram/pages/profile/profile.js
 Page({
 
   /**

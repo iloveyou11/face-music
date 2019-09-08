@@ -49,7 +49,6 @@ Page({
     }
 
     let music = musiclist[nowPlayingIndex]
-    console.log(music)
     wx.setNavigationBarTitle({
       title: music.name,
     })
@@ -87,6 +86,9 @@ Page({
         musicManager.singer = music.ar[0].name
         musicManager.epname = music.al.name //专辑名称
       }
+
+      // 保存播放历史
+      this.savePlayHistory()
 
       this.setData({
         isPlaying:true
@@ -152,6 +154,34 @@ Page({
     }
     nowPlayingIndex++
     this._loadMusicDetail(musiclist[nowPlayingIndex].id)
-  }
+  },
+
+  // 保存播放历史
+  savePlayHistory(){
+    // 当前正在播放的歌曲
+    const music=musiclist[nowPlayingIndex]
+    const openid = app.globalData.openid
+    const history = wx.getStorageSync(openid)
+    let isHave=false
+    let id=-1
+    // 判断歌曲是否已经存在本地存储中
+    for (let i = 0, len = history.length; i < len; i++) {
+      if (history[i].id === music.id) {
+        isHave = true
+        id=i
+        break
+      }
+    }
+
+    if (isHave) { 
+      history.splice(id, 1)
+    }
+    history.unshift(music)
+    console.log(history)
+    wx.setStorage({
+      key: openid,
+      data: history
+    })
+  },
 
 })

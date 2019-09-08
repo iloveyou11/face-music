@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "music-list":"/components/music-list/music-list"
+  },
+  "navigationBarTitleText": "历史播放"
+}

@@ -1,3 +1,5 @@
+let keywords=''
+
 Page({
 
   /**
@@ -13,6 +15,8 @@ Page({
   onLoad: function (options) {
     this._loadBlogList()
   },
+
+  // 需要支持start起始条、keywords关键字模糊搜索
   _loadBlogList(start=0){
     wx.showLoading({
       title: '拼命加载中……',
@@ -22,6 +26,7 @@ Page({
       data:{
         start,
         count: 10,
+        keywords,
         $url:'list'
       }
     }).then(res=>{
@@ -76,7 +81,7 @@ Page({
   },
 
   loginSuccess(e){
-    console.log(e)
+    // console.log(e)
     const detail=e.detail
     wx.navigateTo({
       url: `../review-edit/review-edit?nickName=${detail.nickName}&avatarUrl=${detail.avatarUrl}`,
@@ -107,6 +112,24 @@ Page({
     wx.navigateTo({
       url: `../comment/comment?blogid=${e.target.dataset.blogid}`,
     })
+  },
+
+  onSearch(e){
+    keywords=e.detail.keywords
+    this.setData({
+      blogList:[]
+    })
+    this._loadBlogList(0)
+  },
+
+  onShareAppMessage(e){
+    // console.log(e)
+    let blog=e.target.dataset.blog
+    return{
+      title: blog.content,
+      path: `/pages/comment/comment?blogId=${blog._id}`,
+      // imageUrl:''
+    }
   }
 
 })
