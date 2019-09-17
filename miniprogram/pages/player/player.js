@@ -176,7 +176,6 @@ Page({
       history.splice(id, 1)
     }
     history.unshift(music)
-    console.log(history)
     wx.setStorage({
       key: openid,
       data: history

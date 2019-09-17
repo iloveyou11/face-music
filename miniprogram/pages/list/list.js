@@ -1,20 +1,31 @@
 const MAX_LENGTH=15
+const db=wx.cloud.database()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    swipers: [{
-      url: 'http://p1.music.126.net/oeH9rlBAj3UNkhOmfog8Hw==/109951164169407335.jpg',
-    },
-      {
-        url: 'http://p1.music.126.net/xhWAaHI-SIYP8ZMzL9NOqg==/109951164167032995.jpg',
-      },
-      {
-        url: 'http://p1.music.126.net/Yo-FjrJTQ9clkDkuUCTtUg==/109951164169441928.jpg',
-      }],
+    swipers:[],
+    // swipers: [{
+    //   url: 'http://p1.music.126.net/oeH9rlBAj3UNkhOmfog8Hw==/109951164169407335.jpg',
+    // },
+    //   {
+    //     url: 'http://p1.music.126.net/xhWAaHI-SIYP8ZMzL9NOqg==/109951164167032995.jpg',
+    //   },
+    //   {
+    //     url: 'http://p1.music.126.net/Yo-FjrJTQ9clkDkuUCTtUg==/109951164169441928.jpg',
+    //   }],
       playlist:[]
+  },
+
+  _getSwiper(){
+    db.collection('swiper').get().then(res=>{
+      this.setData({
+        swipers:res.data
+      })
+    })
   },
 
   /**
@@ -22,6 +33,7 @@ Page({
    */
   onLoad: function (options) {
     this._getPlaylist()
+    this._getSwiper()
   },
 
   
@@ -33,6 +45,7 @@ Page({
       playlist:[]
     })
     this._getPlaylist()
+    this._getSwiper()
   },
 
   /**
